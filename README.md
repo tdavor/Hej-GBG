@@ -2,11 +2,8 @@
 
 Interaktivni vodič za život u Göteborgu (HR / EN / SV): kontrolna lista za prvih 90 dana, rječnik švedskih pojmova, imenik ustanova i preporuka te nativni Kotlin kod.
 
-## Automatska izrada `.apk` datoteke na GitHubu
+## Kako dobiti `.apk` na GitHubu
 
-Ovaj repozitorij sadrži konfigurirani GitHub Actions workflow (`.github/workflows/build-apk.yml`) koji automatski pakira aplikaciju i kompajlira Android `.apk`.
-
-1. Povežite projekt s GitHubom ili prenesite datoteke u novi GitHub repozitorij (`main` grana).
-2. Na GitHubu otvorite karticu **Actions** (ako je potrebno, kliknite *I understand my workflows, go ahead and enable them*).
-3. Pokrenut će se workflow **Build Android APK** (ili ga pokrenite ručno putem **Run workflow**).
-4. Kad build završi (za ~2–3 minute), na dnu stranice tog builda pod **Artifacts** preuzmite **`hej-goteborg-debug-apk`** (`app-debug.apk`) i instalirajte ga na Android uređaj.
+1. U AI Studiju kliknite **Save to GitHub** kako biste spremili izmjene u svoj GitHub repozitorij (ako AI Studio napravi Pull Request, otvorite ga na GitHubu i kliknite **Merge pull request**).
+2. Otvorite **Actions** na svom GitHub repozitoriju — workflow **Build Android APK** automatski gradi `hej-goteborg-debug-apk` (`app-debug.apk`) pod **Artifacts**.
+3. Ako želite izravan `.apk` link bez raspakiravanja ZIP-a, na GitHubu otvorite **Releases → Draft a new release**, upišite tag **`v1.0.0`** i objavite release — GitHub Actions će automatski priložiti **`Hej-Goteborg-v1.0.0.apk`** izravno u taj Release.
