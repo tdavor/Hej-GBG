@@ -1,9 +1,22 @@
 # Hej Göteborg
 
+[![Najnovija verzija](https://img.shields.io/github/v/release/OWNER/REPO?label=Najnovija%20verzija&color=0F4C81)](https://github.com/OWNER/REPO/releases/latest)
+
 Interaktivni vodič za život u Göteborgu (HR / EN / SV): kontrolna lista za prvih 90 dana, rječnik švedskih pojmova, imenik ustanova i preporuka te nativni Kotlin kod.
 
-## Kako dobiti `.apk` na GitHubu
+## Preuzimanje Android aplikacije (.apk)
 
-1. U AI Studiju kliknite **Save to GitHub** kako biste spremili izmjene u svoj GitHub repozitorij (ako AI Studio napravi Pull Request, otvorite ga na GitHubu i kliknite **Merge pull request**).
-2. Otvorite **Actions** na svom GitHub repozitoriju — workflow **Build Android APK** automatski gradi `hej-goteborg-debug-apk` (`app-debug.apk`) pod **Artifacts**.
-3. Ako želite izravan `.apk` link bez raspakiravanja ZIP-a, na GitHubu otvorite **Releases → Draft a new release**, upišite tag **`v1.0.0`** i objavite release — GitHub Actions će automatski priložiti **`Hej-Goteborg-v1.0.0.apk`** izravno u taj Release.
+- **Preuzmi najnoviji APK (automatski prati najnoviji Release):**
+  [Preuzmi Hej-Goteborg-latest.apk](https://github.com/OWNER/REPO/releases/latest/download/Hej-Goteborg-latest.apk)
+- **Najnovije izdanje i bilješke (Latest Release):**
+  [Otvori najnoviji Release](https://github.com/OWNER/REPO/releases/latest)
+- **Sva izdanja (Releases):**
+  [Pregledaj sva izdanja](https://github.com/OWNER/REPO/releases)
+
+> **Napomena:** Pri prvoj sinkronizaciji na `main` granu GitHub Actions automatski zamjenjuje `OWNER/REPO` stvarnim imenom vašeg repozitorija (ili ga možete ručno zamijeniti u ovom `README.md` fajlu).
+
+## Kako objaviti novu verziju `.apk` datoteke
+
+1. Na GitHubu otvorite **Releases → Draft a new release**.
+2. Pod **Choose a tag** upišite novu verziju (npr. **`v1.0.0`**, **`v1.1.0`**) i kliknite **Publish release**.
+3. Workflow **Build Android APK** automatski gradi najnoviji kod i prilaže `Hej-Goteborg-latest.apk` te `Hej-Goteborg-<tag>.apk` u taj Release — gornji link u `README.md` automatski će uvijek preuzimati najnoviju verziju.

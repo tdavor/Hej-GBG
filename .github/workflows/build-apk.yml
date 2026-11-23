@@ -23,6 +23,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
 
+      - name: Update README release links with repository slug
+        if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+        run: |
+          if grep -q "OWNER/REPO" README.md; then
+            sed -i "s|OWNER/REPO|${{ github.repository }}|g" README.md
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add README.md
+            git commit -m "chore: update README release download links [skip ci]" || true
+            git push || echo "Skipping README push (check branch permissions)"
+          fi
+
       - name: Set up Node.js 24
         uses: actions/setup-node@v5
         with:
@@ -67,6 +79,16 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cp android/app/build/outputs/apk/debug/app-debug.apk "Hej-Goteborg-${GITHUB_REF_NAME}.apk"
-          gh release create "$GITHUB_REF_NAME" "Hej-Goteborg-${GITHUB_REF_NAME}.apk" \
-            --title "Hej Göteborg $GITHUB_REF_NAME" \
-            --notes "Automatski izgrađen Android APK za Hej Göteborg ($GITHUB_REF_NAME)."
+          cp android/app/build/outputs/apk/debug/app-debug.apk "Hej-Goteborg-latest.apk"
+          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            gh release upload "$GITHUB_REF_NAME" \
+              "Hej-Goteborg-${GITHUB_REF_NAME}.apk" \
+              "Hej-Goteborg-latest.apk" \
+              --clobber
+          else
+            gh release create "$GITHUB_REF_NAME" \
+              "Hej-Goteborg-${GITHUB_REF_NAME}.apk" \
+              "Hej-Goteborg-latest.apk" \
+              --title "Hej Göteborg $GITHUB_REF_NAME" \
+              --notes "Automatski izgrađen Android APK za Hej Göteborg ($GITHUB_REF_NAME)."
+          fi
